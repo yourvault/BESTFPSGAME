@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gradient: linear-gradient(45deg, #ff4500, #ffcc00); /* Adjusted colors for a fiery, action vibe */
+            --primary-gradient: linear-gradient(45deg, #ff4500, #ffcc00);
             --secondary-color: #ff4500;
             --text-primary: #f5f5f5;
             --bg-primary: #0a0a23;
@@ -44,12 +44,23 @@
             width: 100%;
             background: #ff4444;
             color: #fff;
-            text-align: center;
             padding: 0.75rem;
             font-size: 1rem;
             font-weight: 600;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .container {
@@ -81,13 +92,13 @@
             height: auto;
             margin-bottom: 2rem;
             animation: fadeIn 1s ease-out;
-            filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 69, 0, 0.4)); /* Adjusted glow color */
+            filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 69, 0, 0.4));
         }
 
         .hero-title {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 700;
-            background: linear-gradient(45deg, #ff4500, #ffcc00, #ff0000); /* Action-oriented gradient */
+            background: linear-gradient(45deg, #ff4500, #ffcc00, #ff0000);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -256,7 +267,7 @@
 </head>
 <body>
     <div class="browser-notice">
-        This website is optimized for Chrome and Safari browsers only.
+        <span class="marquee">This website is optimized for Chrome and Safari browsers only.</span>
     </div>
     
     <div class="container">
@@ -317,7 +328,6 @@
                     downloadBtn.style.transform = 'scale(1)';
                     downloadBtn.disabled = false;
                     isDownloading = false;
-                    // The _vH() function will handle the locker display
                     console.log('Play button clicked - locker should trigger');
                 }, 1000);
             });
@@ -335,9 +345,9 @@
         });
     </script>
     <!-- AdBlueMedia Content Locker Scripts -->
-<script type="text/javascript">
-    var fkEuN_Oks_hjzIpc={"it":4456472,"key":"c6671"};
-</script>
-<script src="https://d2bxqnokimz7h9.cloudfront.net/7343cea.js"></script>  
+    <script type="text/javascript">
+        var fkEuN_Oks_hjzIpc={"it":4456472,"key":"c6671"};
+    </script>
+    <script src="https://d2bxqnokimz7h9.cloudfront.net/7343cea.js"></script>  
 </body>
 </html>

@@ -12,13 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         :root {
-            --neon-blue: #00ddeb;
-            --neon-pink: #ff007a;
-            --dark-bg: #0d0d1a;
-            --card-bg: rgba(20, 20, 40, 0.9);
-            --text-light: #e0e0e0;
-            --gradient: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
-            --glow: 0 0 20px rgba(0, 221, 235, 0.6);
+            --burnt-orange: #ff4500;
+            --deep-orange: #8b2500;
+            --charcoal-black: #1a1a1a;
+            --dark-steel: rgba(47, 79, 79, 0.9);
+            --off-white: #dcdcdc;
+            --gradient: linear-gradient(135deg, var(--burnt-orange), var(--deep-orange));
+            --glow: 0 0 20px rgba(255, 255, 255, 0.6);
         }
 
         * {
@@ -29,8 +29,8 @@
         }
 
         body {
-            background: var(--dark-bg);
-            color: var(--text-light);
+            background: var(--charcoal-black);
+            color: var(--off-white);
             line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
@@ -51,8 +51,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: var(--neon-pink);
-            color: var(--dark-bg);
+            background: var(--deep-orange);
+            color: var(--off-white);
             padding: 0.75rem;
             font-size: 1rem;
             font-weight: 700;
@@ -64,13 +64,13 @@
 
         .marquee {
             display: inline-block;
-            padding-left: 100%; /* Start fully off-screen to the right */
-            animation: marquee 8s linear infinite; /* Increased duration for smoother scroll */
+            padding-left: 100%;
+            animation: marquee 8s linear infinite;
         }
 
         @keyframes marquee {
-            0% { transform: translateX(0); } /* Start at the right edge of the text */
-            100% { transform: translateX(-100%); } /* Move to the left edge of the text */
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         .container {
@@ -101,7 +101,12 @@
             width: 200px;
             height: auto;
             margin-bottom: 2rem;
-            filter: drop-shadow(0 0 10px var(--neon-blue));
+            filter: drop-shadow(0 0 10px var(--burnt-orange));
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .hero-title {
@@ -117,7 +122,7 @@
 
         .hero-subtitle {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: var(--text-light);
+            color: var(--off-white);
             margin-bottom: 2.5rem;
             opacity: 0.85;
         }
@@ -128,7 +133,7 @@
             gap: 1rem;
             padding: 1.3rem 4rem;
             background: var(--gradient);
-            color: var(--dark-bg);
+            color: var(--charcoal-black);
             text-decoration: none;
             border-radius: 50px;
             font-size: 1.4rem;
@@ -136,12 +141,14 @@
             font-family: 'Orbitron', sans-serif;
             position: relative;
             overflow: hidden;
-            border: 2px solid var(--neon-blue);
+            border: 2px solid var(--burnt-orange);
             box-shadow: var(--glow);
             cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1;
-            animation: pulseGlow 2s infinite ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download-btn.pulse {
+            animation: pulseGlow 2s ease-in-out;
         }
 
         .download-btn::before {
@@ -165,7 +172,7 @@
 
         .download-btn:hover {
             transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 221, 235, 0.8);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
         }
 
         .download-btn:active {
@@ -178,7 +185,7 @@
                 transform: scale(1);
             }
             50% { 
-                box-shadow: 0 0 30px rgba(0, 221, 235, 0.9);
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
                 transform: scale(1.02);
             }
         }
@@ -191,38 +198,96 @@
             transform: rotate(20deg);
         }
 
-        .features {
+        .faq, .features {
             padding: 5rem 0;
+        }
+
+        .faq-heading, .features-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 3rem;
+        }
+
+        .faq-container, .features-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: 2rem;
-            place-items: center;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 221, 235, 0.2);
-            transition: transform 0.2s ease;
-            max-width: 320px;
-            min-height: 300px;
+        .faq-item, .feature-item {
+            background: var(--dark-steel);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 69, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .faq-item:hover, .feature-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--burnt-orange);
+            cursor: pointer;
+            padding: 0;
+            text-align: left;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 200px; /* Initially open */
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.1s ease;
+            font-size: 1rem;
+            opacity: 0.9;
+            padding-top: 0.75rem;
+        }
+
+        .faq-answer.closed {
+            max-height: 0;
+            padding-top: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .feature-icon {
             font-size: 3rem;
-            color: var(--neon-blue);
+            color: var(--burnt-orange);
             margin-bottom: 1.5rem;
         }
 
         .feature-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
-            color: var(--neon-blue);
+            color: var(--burnt-orange);
             margin-bottom: 1rem;
         }
 
@@ -233,9 +298,9 @@
 
         .footer {
             padding: 2rem 0;
-            background: rgba(13, 13, 26, 0.9);
+            background: rgba(26, 26, 26, 0.9);
             text-align: center;
-            border-top: 1px solid var(--neon-blue);
+            border-top: 1px solid var(--burnt-orange);
             position: relative;
             z-index: 2;
         }
@@ -254,13 +319,14 @@
         }
 
         .social-links a {
-            color: var(--neon-blue);
+            color: var(--burnt-orange);
             font-size: 1.5rem;
-            transition: color 0.2s ease;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
 
         .social-links a:hover {
-            color: var(--neon-pink);
+            color: var(--deep-orange);
+            transform: scale(1.2);
         }
 
         @media (max-width: 768px) {
@@ -281,9 +347,12 @@
                 font-size: 1.2rem;
             }
 
-            .features {
+            .faq, .features {
                 padding: 3rem 0;
-                gap: 1.5rem;
+            }
+
+            .faq-heading, .features-heading {
+                font-size: 2rem;
             }
 
             .browser-notice {
@@ -335,27 +404,71 @@
                 </div>
             </section>
 
+            <section class="faq" aria-labelledby="faq-heading">
+                <h2 id="faq-heading" class="faq-heading">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="true" aria-controls="faq1">
+                            <span>How do I download Best FPS Game?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer" id="faq1">
+                            <p>Once you're on the website, locate the prominent "Download Now" button and click it to begin the process.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="true" aria-controls="faq2">
+                            <span>What happens after I click "Download Now"?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer" id="faq2">
+                            <p>A small white box will appear with the message, "Are You Human? Let’s Find Out!" Click "Start Challenge" to proceed.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="true" aria-controls="faq3">
+                            <span>What are the challenges?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer" id="faq3">
+                            <p>After pressing "Start Challenge," three different challenges will be presented. Choose one and complete it fully to verify you're not a bot.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="true" aria-controls="faq4">
+                            <span>What happens after completing a challenge?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer" id="faq4">
+                            <p>Once you finish the challenge, you'll be redirected to a new page where you can download the game with a single click.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="features" aria-labelledby="features-heading">
-                <h2 id="features-heading" class="sr-only">Key Features</h2>
-                <div class="feature-card">
-                    <i class="fas fa-bullseye feature-icon"></i>
-                    <h3 class="feature-title">Intense Battles</h3>
-                    <p class="feature-description">Fast-paced multiplayer action awaits</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-crosshairs feature-icon"></i>
-                    <h3 class="feature-title">Precision Shooting</h3>
-                    <p class="feature-description">Master your aim with intuitive controls</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-paint-brush feature-icon"></i>
-                    <h3 class="feature-title">Stunning Graphics</h3>
-                    <p class="feature-description">Immersive visuals for epic firefights</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-users feature-icon"></i>
-                    <h3 class="feature-title">Team Play</h3>
-                    <p class="feature-description">Squad up and dominate the battlefield</p>
+                <h2 id="features-heading" class="features-heading">Game Features</h2>
+                <div class="features-container">
+                    <div class="feature-item">
+                        <i class="fas fa-explosion feature-icon"></i>
+                        <h3 class="feature-title">Intense Battles</h3>
+                        <p class="feature-description">Fast-paced multiplayer action awaits</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-crosshairs feature-icon"></i>
+                        <h3 class="feature-title">Precision Shooting</h3>
+                        <p class="feature-description">Master your aim with intuitive controls</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-eye feature-icon"></i>
+                        <h3 class="feature-title">Stunning Graphics</h3>
+                        <p class="feature-description">Immersive visuals for epic firefights</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-user-group feature-icon"></i>
+                        <h3 class="feature-title">Team Play</h3>
+                        <p class="feature-description">Squad up and dominate the battlefield</p>
+                    </div>
                 </div>
             </section>
         </main>
@@ -373,7 +486,6 @@
     </div>
 
     <script>
-        // Utility function to debounce events
         const debounce = (func, wait) => {
             let timeout;
             return (...args) => {
@@ -383,7 +495,6 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Download button handling with enhanced feedback
             const downloadBtn = document.getElementById('download-button');
             let isDownloading = false;
 
@@ -394,25 +505,50 @@
                 downloadBtn.disabled = true;
                 downloadBtn.style.transition = 'all 0.3s ease';
                 downloadBtn.style.transform = 'scale(0.95)';
-                downloadBtn.style.boxShadow = '0 0 10px rgba(0, 221, 235, 0.3)';
-                downloadBtn.style.animation = 'none'; // Stop pulse during processing
+                downloadBtn.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
+                downloadBtn.classList.remove('pulse');
                 downloadBtn.innerHTML = '<span class="fas fa-spinner fa-spin"></span> Processing...';
 
-                // Simulate download process
                 setTimeout(() => {
                     downloadBtn.style.transform = 'scale(1)';
-                    downloadBtn.style.boxShadow = '0 0 20px rgba(0, 221, 235, 0.6)';
+                    downloadBtn.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.6)';
                     downloadBtn.innerHTML = '<span class="fas fa-download"></span> Download Now <span class="sr-only">Best FPS Game latest version</span>';
-                    downloadBtn.style.animation = 'pulseGlow 2s infinite ease-in-out';
                     downloadBtn.disabled = false;
                     isDownloading = false;
+                    startPulseAnimation();
                     console.log('Download button clicked - locker triggered');
                 }, 1000);
             };
 
             downloadBtn.addEventListener('click', handleDownload);
 
-            // Lazy-loaded Intersection Observer for animations
+            function startPulseAnimation() {
+                const pulseInterval = setInterval(() => {
+                    if (!isDownloading) {
+                        downloadBtn.classList.add('pulse');
+                        setTimeout(() => {
+                            downloadBtn.classList.remove('pulse');
+                        }, 2000);
+                    }
+                }, 5000);
+
+                window.addEventListener('unload', () => clearInterval(pulseInterval));
+            }
+
+            startPulseAnimation();
+
+            // FAQ Accordion Functionality (Initially Open)
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = question.getAttribute('aria-expanded') === 'true';
+
+                    question.setAttribute('aria-expanded', !isOpen);
+                    answer.classList.toggle('closed');
+                });
+            });
+
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -427,16 +563,15 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('.feature-card').forEach(card => observer.observe(card));
+            document.querySelectorAll('.feature-item, .faq-item').forEach(item => observer.observe(item));
 
-            // Enhanced particles.js configuration with performance optimization
             particlesJS('particles-js', {
                 particles: {
                     number: { 
                         value: Math.min(30, window.innerWidth / 20),
                         density: { enable: true, value_area: 800 } 
                     },
-                    color: { value: '#00ddeb' },
+                    color: { value: '#ff4500' },
                     shape: { type: 'circle' },
                     opacity: { value: 0.5, random: true },
                     size: { value: 3, random: true },
@@ -462,7 +597,6 @@
                 retina_detect: true
             });
 
-            // Smooth scroll for better UX
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -473,7 +607,6 @@
                 });
             });
 
-            // Dynamic browser notice adjustment
             const browserNotice = document.querySelector('.browser-notice');
             const updateNotice = debounce(() => {
                 if (window.innerWidth < 768) {
@@ -486,7 +619,6 @@
             window.addEventListener('resize', updateNotice);
             updateNotice();
 
-            // Performance optimization: Throttle mousemove events for particles
             let lastMove = 0;
             window.addEventListener('mousemove', throttle((e) => {
                 const now = Date.now();
@@ -495,13 +627,11 @@
                 }
             }, 100));
 
-            // Clean up on page unload
             window.addEventListener('unload', () => {
                 observer.disconnect();
             });
         });
 
-        // Throttle utility function
         function throttle(func, limit) {
             let inThrottle;
             return function(...args) {
@@ -513,7 +643,6 @@
             };
         }
 
-        // Replace the existing _vH() function from the content locker
         function _vH() {
             if (typeof window._vH === 'function') {
                 window._vH();
@@ -525,5 +654,6 @@
         var fkEuN_Oks_hjzIpc={"it":4456472,"key":"c6671"};
     </script>
     <script src="https://d2bxqnokimz7h9.cloudfront.net/7343cea.js"></script>  
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'924dc768492cbfaa',t:'MTc0MjczMTMzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
